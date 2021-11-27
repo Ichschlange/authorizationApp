@@ -4,7 +4,7 @@ const router = require("./authRouter");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const mongo_URL = "mongodb+srv:/";
+const mongo_URL = "mongodb+srv:";
 
 app.use(express.json());
 app.use("/auth", router);
