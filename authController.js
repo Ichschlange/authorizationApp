@@ -30,7 +30,8 @@ class authController
             }
             const hashPass = bcrypt.hashSync(password, 9);
             const userRole = await Role.findOne({value: "USER"});
-            const user = new User({username, password: hashPass, role: [userRole.value]});
+            const user = new User({username, password: hashPass, roles: [userRole.value]});
+            
             await user.save();
             return res.json({message: "User created"});
         } catch (e) {
@@ -62,11 +63,8 @@ class authController
 
     async users(req, res) {
         try {
-           /* const userRole = new Role();
-            const adminRole = new Role({value: "ADMIN"});
-            await userRole.save();
-            await adminRole.save();*/
-            res.json("serverWork!");
+            const users = await User.find();
+            res.json(users);
         } catch (e) {
             console.log(e);
         }
